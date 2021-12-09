@@ -1,8 +1,14 @@
+import { ChangeEvent, FormEvent } from "react";
 import InputWithLabel from "./InputWithLable";
+type SearchFormProps = {
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  searchTerm: string;
+};
 
-const SearchForm =({onSubmit, onSearch, searchTerm}:any) =>{
-    return(
-        <form onSubmit={onSubmit}>
+const SearchForm = ({ onSubmit, onSearch, searchTerm }: SearchFormProps) => {
+  return (
+    <form onSubmit={onSubmit}>
       <InputWithLabel
         id="search"
         value={searchTerm}
@@ -11,15 +17,15 @@ const SearchForm =({onSubmit, onSearch, searchTerm}:any) =>{
       >
         Search
       </InputWithLabel>
-      <button 
-      type="submit"
-       disabled={!searchTerm}
-      className={`submitButton $ {!searchTerm ? "disButton" : " "}`}
-      
+      <button
+        type="submit"
+        disabled={!searchTerm}
+        className={`submitButton ${!searchTerm ? "disButton" : ""}`}
       >
-      Submit
+        Submit
       </button>
-      </form>
-    );
-    };
-    export default SearchForm;
+    </form>
+  );
+};
+
+export default SearchForm;
